@@ -1,8 +1,18 @@
+/* ADDED: Ensures the document can scroll and anchors absolute positioning */
+body {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 #tile-wall {
-  position: fixed;
-  inset: 0;
+  /* CHANGED: Swapped position: fixed and inset: 0 so it scrolls with the page */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: grid;
-  overflow: hidden;
   z-index: -1;
 
   /* Grout color */
@@ -11,14 +21,13 @@
   /* Optional: subtle ambient occlusion around the entire screen border */
   /* box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8); */
 
+  /* Base/Mobile settings */
+  --gap: 2px;
+  --min-tile-size: 32px;
 
-/* Base/Mobile settings */
---gap: 2px;
---min-tile-size: 32px;
-
-padding: var(--gap);
-gap: var(--gap);
-grid-template-columns: repeat(auto-fill, minmax(var(--min-tile-size), 1fr));
+  padding: var(--gap);
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fill, minmax(var(--min-tile-size), 1fr));
 }
 
 /* Tablet: wider tiles and slightly larger margins */
@@ -49,5 +58,17 @@ grid-template-columns: repeat(auto-fill, minmax(var(--min-tile-size), 1fr));
 }
 
 .container {
-  margin-top: 30px
+  position: relative;
+  z-index: 10;
+
+  /* 1. Internal breathing room (top/bottom, left/right) */
+  padding: 40px 24px;
+
+  /* 2. Keeps text from stretching across ultra-wide monitors */
+  max-width: 800px;
+
+  /* 3. Centers the container on the screen horizontally */
+  margin: 0 auto;
+
+  color: #000000;
 }
