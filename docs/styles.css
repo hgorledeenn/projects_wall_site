@@ -1,0 +1,53 @@
+#tile-wall {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  overflow: hidden;
+  z-index: -1;
+
+  /* Grout color */
+  background-color: #ffffff;
+
+  /* Optional: subtle ambient occlusion around the entire screen border */
+  /* box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8); */
+
+
+/* Base/Mobile settings */
+--gap: 2px;
+--min-tile-size: 32px;
+
+padding: var(--gap);
+gap: var(--gap);
+grid-template-columns: repeat(auto-fill, minmax(var(--min-tile-size), 1fr));
+}
+
+/* Tablet: wider tiles and slightly larger margins */
+@media (min-width: 600px) {
+  #tile-wall {
+    --gap: 2px;
+    --min-tile-size: 38px;
+  }
+}
+
+/* Desktop: spacious margins and tiles */
+@media (min-width: 1024px) {
+  #tile-wall {
+    --gap: 2px;
+    --min-tile-size: 35px;
+  }
+}
+
+.tile {
+  aspect-ratio: 1 / 1;
+  border-radius: 1px;
+  /* Slightly rounded edges catch light more naturally */
+
+  box-shadow:
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.25),
+    inset 0 -2px 1.5px rgba(0, 0, 0, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  margin-top: 30px
+}
